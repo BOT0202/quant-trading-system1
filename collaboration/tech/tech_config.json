@@ -1,0 +1,14 @@
+{
+  "role": "技术负责人",
+  "name": "Brian",
+  "responsibilities": [
+    "架构设计",
+    "开发管理",
+    "代码审查",
+    "技术选型",
+    "性能优化"
+  ],
+  "tech_stack": ["后端", "前端", "数据库", "DevOps"],
+  "communication_channels": ["产品团队", "运营团队", "测试团队"],
+  "key_metrics": ["系统稳定性", "开发效率", "代码质量"]
+}

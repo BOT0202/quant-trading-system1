@@ -1,0 +1,239 @@
+#!/bin/bash
+
+# 角色响应脚本
+# 模拟角色对消息的响应
+
+ROLE=$1
+ACTION=$2
+MESSAGE_ID=$3
+
+if [ $# -lt 2 ]; then
+    echo "❌ 用法: $0 <role> <action> [message_id]"
+    echo "   角色: product, tech, ops"
+    echo "   动作: check, respond, status"
+    echo "   示例:"
+    echo "     $0 product check          # 检查产品经理收件箱"
+    echo "     $0 tech respond msg123    # 技术负责人回复消息"
+    echo "     $0 ops status             # 查看运营专家状态"
+    exit 1
+fi
+
+case $ROLE in
+    "product")
+        ROLE_NAME="产品经理"
+        ROLE_DIR="collaboration/product"
+        ;;
+    "tech")
+        ROLE_NAME="技术负责人"
+        ROLE_DIR="collaboration/tech"
+        ;;
+    "ops")
+        "test")
+            ROLE_NAME="测试专家"
+            ROLE_DIR="collaboration/test_role"
+            ;;
+        ROLE_NAME="运营专家"
+        ROLE_DIR="collaboration/ops"
+        ;;
+    *)
+        echo "❌ 无效角色: $ROLE"
+        echo "   有效角色: product, tech, ops"
+        exit 1
+        ;;
+esac
+
+case $ACTION in
+    "check")
+        echo "📭 ${ROLE_NAME} 收件箱检查"
+        echo "========================================"
+        
+        INBOX_DIR="${ROLE_DIR}/inbox"
+        if [ ! -d "$INBOX_DIR" ]; then
+            mkdir -p "$INBOX_DIR"
+        fi
+        
+        MESSAGES=($(ls -1 "$INBOX_DIR"/*.json 2>/dev/null))
+        
+        if [ ${#MESSAGES[@]} -eq 0 ]; then
+            echo "📪 收件箱为空"
+        else
+            echo "📨 有 ${#MESSAGES[@]} 条未读消息:"
+            echo ""
+            
+            for MSG_FILE in "${MESSAGES[@]}"; do
+                MSG_ID=$(basename "$MSG_FILE" .json | awk -F'_' '{print $NF}')
+                FROM=$(basename "$MSG_FILE" .json | awk -F'_' '{print $1}')
+                TIMESTAMP=$(grep -o '"timestamp": "[^"]*"' "$MSG_FILE" | cut -d'"' -f4)
+                CONTENT=$(grep -o '"content": "[^"]*"' "$MSG_FILE" | cut -d'"' -f4)
+                
+                echo "🔸 消息ID: $MSG_ID"
+                echo "   来自: $FROM"
+                echo "   时间: $TIMESTAMP"
+                echo "   内容: ${CONTENT:0:60}..."
+                echo ""
+            done
+        fi
+        
+        # 检查通知文件
+        NOTICES=($(ls -1 "$INBOX_DIR"/NEW_MESSAGE_*.txt 2>/dev/null))
+        if [ ${#NOTICES[@]} -gt 0 ]; then
+            echo "🔔 有 ${#NOTICES[@]} 条新消息通知"
+            for NOTICE in "${NOTICES[@]}"; do
+                echo "   通知: $(basename "$NOTICE")"
+            done
+        fi
+        ;;
+        
+    "respond")
+        if [ -z "$MESSAGE_ID" ]; then
+            echo "❌ 需要指定消息ID"
+            echo "   用法: $0 $ROLE respond <message_id>"
+            exit 1
+        fi
+        
+        echo "💬 ${ROLE_NAME} 回复消息"
+        echo "========================================"
+        
+        # 查找消息文件
+        MSG_FILE=$(find "${ROLE_DIR}/inbox" -name "*_${MESSAGE_ID}.json" 2>/dev/null | head -1)
+        
+        if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+            echo "❌ 未找到消息ID: $MESSAGE_ID"
+            exit 1
+        fi
+        
+        # 读取消息内容
+        FROM=$(basename "$MSG_FILE" .json | awk -F'_' '{print $1}')
+        OLD_CONTENT=$(grep -o '"content": "[^"]*"' "$MSG_FILE" | cut -d'"' -f4)
+        TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+        
+        echo "📨 原始消息:"
+        echo "   来自: $FROM"
+        echo "   内容: $OLD_CONTENT"
+        echo ""
+        
+        # 根据角色生成响应
+        echo "📝 请输入回复内容 (Ctrl+D 结束输入):"
+        echo "----------------------------------------"
+        RESPONSE=$(cat)
+        
+        if [ -z "$RESPONSE" ]; then
+            echo "❌ 回复内容不能为空"
+            exit 1
+        fi
+        
+        # 生成响应消息
+        RESPONSE_ID="resp_$(date +%s%N | md5sum | head -c 6)"
+        RESPONSE_FILE="collaboration/message_queue/pending/${ROLE}_to_${FROM}_${RESPONSE_ID}.json"
+        
+        # 根据角色特点生成响应
+        case $ROLE in
+            "product")
+                # 产品经理的响应通常包含需求澄清或优先级说明
+                RESPONSE_CONTENT="【产品视角】$RESPONSE"
+                ;;
+            "tech")
+                # 技术负责人的响应通常包含技术评估或实现方案
+                RESPONSE_CONTENT="【技术评估】$RESPONSE"
+                ;;
+            "ops")
+        "test")
+            ROLE_NAME="测试专家"
+            ROLE_DIR="collaboration/test_role"
+            ;;
+                # 运营专家的响应通常包含用户影响或推广计划
+                RESPONSE_CONTENT="【运营视角】$RESPONSE"
+                ;;
+        esac
+        
+        cat > "$RESPONSE_FILE" << EOF
+{
+  "id": "${RESPONSE_ID}",
+  "from": "${ROLE}",
+  "to": "${FROM}",
+  "timestamp": "${TIMESTAMP}",
+  "type": "response",
+  "content": "${RESPONSE_CONTENT}",
+  "original_message_id": "${MESSAGE_ID}",
+  "status": "pending"
+}
+EOF
+        
+        # 标记原消息为已处理
+        mv "$MSG_FILE" "${ROLE_DIR}/processed/"
+        
+        # 删除通知文件
+        rm -f "${ROLE_DIR}/inbox/NEW_MESSAGE_${MESSAGE_ID}.txt" 2>/dev/null
+        
+        echo ""
+        echo "✅ 回复已发送！"
+        echo "📤 发送给: $FROM"
+        echo "📝 回复内容: $RESPONSE_CONTENT"
+        echo "📁 响应文件: $RESPONSE_FILE"
+        
+        # 记录到角色日志
+        echo "$TIMESTAMP - 回复消息 #${MESSAGE_ID} 给 ${FROM}" >> "${ROLE_DIR}/role_log.md"
+        ;;
+        
+    "status")
+        echo "📊 ${ROLE_NAME} 状态报告"
+        echo "========================================"
+        
+        # 显示角色配置
+        if [ -f "${ROLE_DIR}/${ROLE}_config.json" ]; then
+            echo "📋 角色配置:"
+            cat "${ROLE_DIR}/${ROLE}_config.json" | python3 -m json.tool 2>/dev/null || cat "${ROLE_DIR}/${ROLE}_config.json"
+            echo ""
+        fi
+        
+        # 显示工作状态
+        echo "📁 工作区状态:"
+        echo "   收件箱: $(ls -1 "${ROLE_DIR}/inbox"/*.json 2>/dev/null | wc -l) 条消息"
+        echo "   已处理: $(ls -1 "${ROLE_DIR}/processed"/*.json 2>/dev/null | wc -l) 条消息"
+        echo "   待办任务: $(find "${ROLE_DIR}" -name "*.md" -type f | xargs grep -l "TODO\|待办" 2>/dev/null | wc -l) 个"
+        
+        # 显示最近活动
+        if [ -f "${ROLE_DIR}/role_log.md" ]; then
+            echo ""
+            echo "📝 最近活动:"
+            tail -5 "${ROLE_DIR}/role_log.md" | while read line; do
+                echo "   $line"
+            done
+        fi
+        
+        # 显示角色特定状态
+        case $ROLE in
+            "product")
+                echo ""
+                echo "🎯 产品关注点:"
+                echo "   • 用户需求分析"
+                echo "   • 产品路线图"
+                echo "   • 功能优先级"
+                ;;
+            "tech")
+                echo ""
+                echo "⚙️  技术关注点:"
+                echo "   • 系统架构"
+                echo "   • 代码质量"
+                echo "   • 性能优化"
+                ;;
+            "ops")
+        "test")
+            ROLE_NAME="测试专家"
+            ROLE_DIR="collaboration/test_role"
+            ;;
+                echo ""
+                echo "📈 运营关注点:"
+                echo "   • 用户增长"
+                echo "   • 活动效果"
+                echo "   • 数据分析"
+                ;;
+        esac
+        ;;
+        
+    *)
+        echo "❌ 无效动作: $ACTION"
+        echo "   有效动作: check, respond, status"
+        exit 1
+        ;;
+esac

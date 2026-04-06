@@ -1,0 +1,220 @@
+立即执行工作计划
+================
+时间: 2026-04-07
+发件人: YangCheng (项目负责人)
+收件人: 产品经理 Alex
+指令: ⚡ 立即执行，不要等待
+
+🚀 立即开始工作指令
+==================
+
+## ⚠️ 重要指令
+**不要等待，不要准备，立即开始执行！**
+
+## 📋 第一步：立即执行的任务（现在开始）
+
+### 1. 交易员名单确定（10分钟内完成）
+- [ ] **立即行动**: 列出你认识的5位交易员
+- [ ] **不要完美**: 先列出名单，后续可以调整
+- [ ] **产出文件**: 创建 `traders_list.txt`
+
+```bash
+# 立即执行命令
+cd /root/.openclaw/workspace/collaboration/product
+echo "# 交易员访谈名单" > traders_list.txt
+echo "1. 交易员A (黄金交易经验3年)" >> traders_list.txt
+echo "2. 交易员B (机构交易员)" >> traders_list.txt
+echo "3. 交易员C (个人投资者)" >> traders_list.txt
+echo "4. 交易员D (量化交易背景)" >> traders_list.txt
+echo "5. 交易员E (新手交易员)" >> traders_list.txt
+```
+
+### 2. 基础访谈问题（15分钟内完成）
+- [ ] **立即行动**: 写下10个核心问题
+- [ ] **不要复杂**: 简单直接的问题
+- [ ] **产出文件**: 创建 `interview_questions.md`
+
+```bash
+# 立即执行命令
+cd /root/.openclaw/workspace/collaboration/product
+echo "# 交易员访谈问题" > interview_questions.md
+echo "## 基本信息" >> interview_questions.md
+echo "1. 您交易黄金多久了？" >> interview_questions.md
+echo "2. 您目前使用什么工具进行交易？" >> interview_questions.md
+echo "## 痛点问题" >> interview_questions.md
+echo "3. 交易决策中最困难的部分是什么？" >> interview_questions.md
+echo "4. 您希望获得什么样的交易信号？" >> interview_questions.md
+echo "## 功能需求" >> interview_questions.md
+echo "5. 您希望信号如何推送给您？" >> interview_questions.md
+echo "6. 您需要哪些类型的技术指标？" >> interview_questions.md
+```
+
+### 3. 需求收集模板（20分钟内完成）
+- [ ] **立即行动**: 创建简单的需求表格
+- [ ] **不要完美**: 先用基础模板
+- [ ] **产出文件**: 创建 `requirements_template.md`
+
+## ⏰ 时间要求：立即开始
+
+### 现在 (立即)
+1. 打开终端
+2. 执行上面的命令
+3. 创建基础文件
+
+### 30分钟内
+1. 完成3个基础文件
+2. 发送第一轮访谈邀请
+3. 开始第一个访谈
+
+### 今天内
+1. 完成2-3个访谈
+2. 整理初步发现
+3. 准备明日计划
+
+## 🛠️ 工具准备（5分钟内完成）
+
+### 立即设置工作环境
+```bash
+# 1. 创建工作目录
+mkdir -p /root/.openclaw/workspace/collaboration/product/work
+cd /root/.openclaw/workspace/collaboration/product/work
+
+# 2. 创建今日工作日志
+echo "# 2026-04-07 工作日志" > daily_log_20260407.md
+echo "## 开始时间: $(date)" >> daily_log_20260407.md
+
+# 3. 创建任务清单
+echo "# 今日任务清单" > tasks_today.md
+echo "- [ ] 确定交易员名单" >> tasks_today.md
+echo "- [ ] 准备访谈问题" >> tasks_today.md
+echo "- [ ] 发送访谈邀请" >> tasks_today.md
+```
+
+## 🔄 立即开始协作
+
+### 1. 与技术负责人沟通（现在）
+```bash
+# 立即发送消息
+cd /root/.openclaw/workspace
+echo "技术负责人，我需要了解技术可行性约束，请回复以下问题：
+1. 系统能支持哪些数据格式？
+2. 实时计算有哪些限制？
+3. 用户并发数预计多少？
+" > temp_message.txt
+# 实际系统中使用: ./send_message.sh product tech "$(cat temp_message.txt)"
+```
+
+### 2. 与运营专家协调（30分钟内）
+- 讨论数据需求
+- 协调策略类型
+- 确定评估标准
+
+### 3. 与测试专家沟通（1小时内）
+- 讨论用户体验测试点
+- 协调测试时间
+- 确定验收标准
+
+## 📊 进度汇报要求
+
+### 立即汇报（执行后立即）
+```bash
+# 创建进度汇报
+cd /root/.openclaw/workspace/collaboration/product
+echo "# 工作开始汇报" > progress_report_$(date +%H%M).md
+echo "## 开始时间: $(date)" >> progress_report_$(date +%H%M).md
+echo "## 已完成:" >> progress_report_$(date +%H%M).md
+echo "- 创建了工作目录" >> progress_report_$(date +%H%M).md
+echo "- 开始执行任务" >> progress_report_$(date +%H%M).md
+```
+
+### 每小时汇报
+- 每小时更新工作日志
+- 记录完成的任务
+- 报告遇到的问题
+
+### 今日总结汇报（18:00）
+- 汇总今日成果
+- 列出明日计划
+- 提出需要支持
+
+## 🚫 禁止行为
+
+### 不要做：
+1. ❌ 不要等待完美计划
+2. ❌ 不要过度准备
+3. ❌ 不要担心犯错误
+4. ❌ 不要独自思考
+5. ❌ 不要延迟沟通
+
+### 必须做：
+1. ✅ 立即开始执行
+2. ✅ 快速产出结果
+3. ✅ 及时寻求帮助
+4. ✅ 频繁沟通反馈
+5. ✅ 持续迭代改进
+
+## 🎯 成功标准（今日）
+
+### 最低要求：
+1. 确定5位交易员名单
+2. 准备基础访谈问题
+3. 发送2个访谈邀请
+4. 完成1个访谈
+
+### 期望目标：
+1. 完成2-3个访谈
+2. 整理初步需求发现
+3. 建立协作沟通机制
+4. 准备评审会材料框架
+
+### 优秀表现：
+1. 完成所有5个访谈安排
+2. 产出需求分析初稿
+3. 建立完整工作流程
+4. 推动其他角色工作
+
+## ⚡ 立即行动命令汇总
+
+```bash
+# 复制并执行这些命令立即开始工作
+cd /root/.openclaw/workspace/collaboration/product
+
+# 1. 创建工作环境
+mkdir -p work
+cd work
+
+# 2. 创建基础文件
+echo "# 交易员访谈名单" > traders_list.txt
+echo "1. 交易员A" >> traders_list.txt
+echo "2. 交易员B" >> traders_list.txt
+echo "3. 交易员C" >> traders_list.txt
+echo "4. 交易员D" >> traders_list.txt
+echo "5. 交易员E" >> traders_list.txt
+
+# 3. 开始工作日志
+echo "# $(date) 工作开始" > daily_log.md
+echo "立即开始执行产品经理工作..." >> daily_log.md
+
+# 4. 汇报开始状态
+echo "产品经理工作已开始执行" > start_report.txt
+```
+
+## 📞 紧急支持
+
+### 如果遇到问题：
+1. **立即联系项目负责人**
+2. **不要独自解决问题超过15分钟**
+3. **及时寻求技术或资源支持**
+
+### 支持渠道：
+- 项目消息系统
+- 紧急联系电话
+- 面对面沟通
+
+---
+⚡ **指令确认：立即开始执行！**
+⏰ **开始时间：现在**
+📊 **首次检查：30分钟后**
+🎯 **目标：今日产出实质性成果**
+
+*不要等待，立即行动！项目成功依赖于你的快速执行能力。*
