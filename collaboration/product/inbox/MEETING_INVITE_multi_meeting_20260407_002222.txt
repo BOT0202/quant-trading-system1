@@ -1,0 +1,21 @@
+会议邀请通知
+============
+主题: 新产品规划与质量保障会议
+会议ID: multi_meeting_20260407_002222
+时间: 2026-04-07 00:22:33
+地点: collaboration/meetings/multi_meeting_20260407_002222
+
+参会角色: 产品经理、技术负责人、运营专家、测试专家
+主持人: YangCheng
+
+📋 会议准备:
+1. 查看会议材料: collaboration/meetings/multi_meeting_20260407_002222/product_preparation.md
+2. 填写准备材料
+3. 准备讨论要点
+
+🎯 产品经理需准备:
+- 产品需求文档
+- 用户价值分析
+- 功能优先级
+
+请准时参加！
