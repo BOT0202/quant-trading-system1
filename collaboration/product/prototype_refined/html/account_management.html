@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuant - 账户管理</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 自定义CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/account.css">
+</head>
+<body class="dashboard-page">
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">
+                <i class="fas fa-chart-line me-2"></i>
+                <span class="fw-bold">GoldQuant</span>
+                <small class="text-warning ms-2">PRO</small>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="fas fa-arrow-left me-1"></i>
+                            返回仪表盘
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 侧边菜单栏 -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                仪表盘
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signal_detail.html">
+                                <i class="fas fa-signal me-2"></i>
+                                信号详情
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="trade_execution.html">
+                                <i class="fas fa-exchange-alt me-2"></i>
+                                交易执行
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="strategy_management.html">
+                                <i class="fas fa-chess-knight me-2"></i>
+                                策略管理
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="account_management.html">
+                                <i class="fas fa-user-circle me-2"></i>
+                                账户管理
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- 主内容 -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <!-- 面包屑导航 -->
+                <nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="dashboard.html">仪表盘</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">账户管理</li>
+                    </ol>
+                </nav>
+
+                <!-- 页面标题 -->
+                <div class="mb-4">
+                    <h1 class="h2 mb-1">账户管理</h1>
+                    <p class="text-muted mb-0">管理您的账户信息、交易记录和安全设置</p>
+                </div>
+
+                <div class="row">
+                    <!-- 左侧：账户概览 -->
+                    <div class="col-lg-8">
+                        <!-- 账户概览卡片 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-wallet me-2 text-primary"></i>
+                                    账户概览
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="account-metric text-center p-3">
+                                            <div class="h3 mb-2 text-primary">$50,250.75</div>
+                                            <div class="small text-muted">总资产</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="account-metric text-center p-3">
+                                            <div class="h3 mb-2 text-success">$35,500.00</div>
+                                            <div class="small text-muted">可用余额</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="account-metric text-center p-3">
+                                            <div class="h3 mb-2 text-info">$14,750.75</div>
+                                            <div class="small text-muted">持仓价值</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="account-metric text-center p-3">
+                                            <div class="h3 mb-2 text-warning">+$2,350.50</div>
+                                            <div class="small text-muted">浮动盈亏</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 资产净值图表 -->
+                                <div class="mt-4">
+                                    <div class="chart-container" style="height: 200px;">
+                                        <canvas id="equityChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 交易历史 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-history me-2"></i>
+                                    交易历史
+                                </h5>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-primary active">今天</button>
+                                    <button type="button" class="btn btn-outline-primary">本周</button>
+                                    <button type="button" class="btn btn-outline-primary">本月</button>
+                                    <button type="button" class="btn btn-outline-primary">全部</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>时间</th>
+                                                <th>交易品种</th>
+                                                <th>类型</th>
+                                                <th>数量</th>
+                                                <th>价格</th>
+                                                <th>盈亏</th>
+                                                <th>状态</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>10:30:15</td>
+                                                <td>XAU/USD</td>
+                                                <td><span class="badge bg-success">买入</span></td>
+                                                <td>0.1手</td>
+                                                <td>$2,350.50</td>
+                                                <td class="text-success">+$245.00</td>
+                                                <td><span class="badge bg-success">已平仓</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>09:15:42</td>
+                                                <td>XAG/USD</td>
+                                                <td><span class="badge bg-danger">卖出</span></td>
+                                                <td>0.5手</td>
+                                                <td>$27.85</td>
+                                                <td class="text-danger">-$85.50</td>
+                                                <td><span class="badge bg-success">已平仓</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>昨天 14:20</td>
+                                                <td>XAU/USD</td>
+                                                <td><span class="badge bg-success">买入</span></td>
+                                                <td>0.2手</td>
+                                                <td>$2,345.00</td>
+                                                <td class="text-success">+$110.00</td>
+                                                <td><span class="badge bg-warning">持仓中</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">显示最近50条记录</small>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-download me-1"></i>
+                                        导出CSV
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：账户设置 -->
+                    <div class="col-lg-4">
+                        <!-- 个人信息 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-user me-2 text-info"></i>
+                                    个人信息
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img src="https://ui-avatars.com/api/?name=张伟&background=1a237e&color=fff&size=100" 
+                                         class="rounded-circle mb-3" alt="用户头像">
+                                    <h5 class="mb-1">张伟</h5>
+                                    <p class="text-muted mb-3">量化分析师</p>
+                                </div>
+                                
+                                <dl class="row mb-0">
+                                    <dt class="col-5">邮箱</dt>
+                                    <dd class="col-7">zhangwei@quant.com</dd>
+                                    
+                                    <dt class="col-5">手机</dt>
+                                    <dd class="col-7">+86 138****5678</dd>
+                                    
+                                    <dt class="col-5">注册时间</dt>
+                                    <dd class="col-7">2026-01-15</dd>
+                                    
+                                    <dt class="col-5">账户等级</dt>
+                                    <dd class="col-7"><span class="badge bg-warning">PRO</span></dd>
+                                </dl>
+                                
+                                <div class="d-grid gap-2 mt-3">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-edit me-2"></i>
+                                        编辑信息
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 安全设置 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-shield-alt me-2 text-danger"></i>
+                                    安全设置
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="security-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>登录密码</span>
+                                        <span class="badge bg-success">已设置</span>
+                                    </div>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        修改密码
+                                    </button>
+                                </div>
+                                
+                                <div class="security-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>双重验证</span>
+                                        <span class="badge bg-warning">未启用</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm w-100">
+                                        启用2FA
+                                    </button>
+                                </div>
+                                
+                                <div class="security-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>登录设备</span>
+                                        <span class="badge bg-info">3台</span>
+                                    </div>
+                                    <button class="btn btn-outline-info btn-sm w-100">
+                                        管理设备
+                                    </button>
+                                </div>
+                                
+                                <div class="alert alert-warning small mt-3">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    建议启用双重验证以增强账户安全。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 通知设置 -->
+                        <div class="card data-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-bell me-2 text-warning"></i>
+                                    通知设置
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">
+                                        交易信号通知
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">
+                                        价格提醒通知
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">
+                                        市场新闻推送
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                    <label class="form-check-label">
+                                        账户安全提醒
+                                    </label>
+                                </div>
+                                
+                                <div class="d-grid gap-2 mt-3">
+                                    <button class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>
+                                        保存设置
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义JS -->
+    <script src="js/main.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>
