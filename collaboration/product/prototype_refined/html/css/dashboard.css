@@ -1,0 +1,393 @@
+/* GoldQuant - 仪表盘特定样式 */
+
+/* 仪表盘页面布局 */
+.dashboard-page {
+    padding-top: 56px; /* 导航栏高度 */
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+}
+
+/* 侧边菜单栏 */
+#sidebar {
+    min-height: calc(100vh - 56px);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-1);
+    transition: all var(--transition-fast) ease;
+}
+
+.sidebar .nav-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.sidebar .nav-link.active {
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.15);
+    border-left: 4px solid var(--primary-color);
+}
+
+.sidebar .nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-heading {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* 主内容区域 */
+.main-content {
+    padding: var(--spacing-4);
+    min-height: calc(100vh - 56px);
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+/* 数据卡片 */
+.data-card {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal) ease;
+    height: 100%;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-light);
+}
+
+.data-card .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-4);
+}
+
+.data-card .card-body {
+    padding: var(--spacing-4);
+}
+
+.data-card .card-footer {
+    background-color: transparent;
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-3) var(--spacing-4);
+}
+
+/* 指标卡片 */
+.metric-card {
+    text-align: center;
+    padding: var(--spacing-4);
+}
+
+.metric-value {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: var(--spacing-2);
+}
+
+.metric-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-2);
+}
+
+.metric-change {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.metric-change.positive {
+    color: var(--success-color);
+}
+
+.metric-change.negative {
+    color: var(--error-color);
+}
+
+/* 信号卡片 */
+.signal-card {
+    border-left: 4px solid;
+    transition: all var(--transition-fast) ease;
+}
+
+.signal-card.buy-signal {
+    border-left-color: var(--buy-color);
+}
+
+.signal-card.sell-signal {
+    border-left-color: var(--sell-color);
+}
+
+.signal-card.hold-signal {
+    border-left-color: var(--hold-color);
+}
+
+.signal-strength {
+    display: inline-block;
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+}
+
+.signal-strength.weak {
+    background-color: rgba(var(--warning-rgb), 0.1);
+    color: var(--warning-color);
+}
+
+.signal-strength.moderate {
+    background-color: rgba(var(--warning-rgb), 0.1);
+    color: var(--warning-color);
+}
+
+.signal-strength.strong {
+    background-color: rgba(var(--success-rgb), 0.1);
+    color: var(--success-color);
+}
+
+.signal-strength.very-strong {
+    background-color: rgba(var(--info-rgb), 0.1);
+    color: var(--info-color);
+}
+
+/* 行情表格 */
+.quote-table {
+    font-size: var(--font-size-sm);
+}
+
+.quote-table th {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border-color);
+    padding: var(--spacing-3) var(--spacing-2);
+}
+
+.quote-table td {
+    padding: var(--spacing-3) var(--spacing-2);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.quote-table tr:hover {
+    background-color: rgba(var(--primary-rgb), 0.05);
+}
+
+.quote-change {
+    font-weight: var(--font-weight-bold);
+}
+
+.quote-change.positive {
+    color: var(--success-color);
+}
+
+.quote-change.negative {
+    color: var(--error-color);
+}
+
+/* 图表容器 */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* 快捷操作按钮 */
+.quick-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-4);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-lg);
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-fast) ease;
+    height: 100%;
+}
+
+.quick-action-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.05);
+    transform: translateY(-2px);
+}
+
+.quick-action-btn i {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-3);
+}
+
+/* 系统状态卡片 */
+.system-status-card {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: var(--spacing-2);
+}
+
+.status-online {
+    background-color: var(--success-color);
+    box-shadow: 0 0 0 2px rgba(var(--success-rgb), 0.3);
+}
+
+.status-warning {
+    background-color: var(--warning-color);
+    box-shadow: 0 0 0 2px rgba(var(--warning-rgb), 0.3);
+}
+
+.status-error {
+    background-color: var(--error-color);
+    box-shadow: 0 0 0 2px rgba(var(--error-rgb), 0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 767.98px) {
+    .dashboard-page {
+        padding-top: 56px;
+    }
+    
+    .main-content {
+        padding: var(--spacing-3);
+    }
+    
+    .data-card {
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .metric-value {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* 加载状态 */
+.loading-spinner {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border .75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-8) var(--spacing-4);
+    color: var(--text-muted);
+}
+
+.empty-state i {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-4);
+    opacity: 0.5;
+}
+
+/* 工具提示增强 */
+.tooltip-inner {
+    background-color: var(--gray-800);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+}
+
+.tooltip-arrow::before {
+    border-top-color: var(--gray-800) !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* 打印样式 */
+@media print {
+    .dashboard-page {
+        padding-top: 0;
+    }
+    
+    .navbar, .sidebar, .quick-action-btn, .btn {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .data-card {
+        box-shadow: none !important;
+        border: 1px solid var(--border-color) !important;
+        break-inside: avoid;
+    }
+}

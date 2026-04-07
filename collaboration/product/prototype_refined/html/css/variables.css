@@ -1,0 +1,219 @@
+/* CSS变量定义 - GoldQuant设计系统 */
+
+:root {
+  /* 主色调 - 专业深蓝色 */
+  --primary-color: #1a237e;
+  --primary-light: #534bae;
+  --primary-dark: #000051;
+  --primary-rgb: 26, 35, 126;
+  
+  /* 辅助色 - 财富金色 */
+  --secondary-color: #ffd700;
+  --secondary-light: #ffff52;
+  --secondary-dark: #c7a600;
+  --secondary-rgb: 255, 215, 0;
+  
+  /* 状态色 */
+  --success-color: #4caf50;
+  --success-light: #80e27e;
+  --success-dark: #087f23;
+  --success-rgb: 76, 175, 80;
+  
+  --warning-color: #ff9800;
+  --warning-light: #ffc947;
+  --warning-dark: #c66900;
+  --warning-rgb: 255, 152, 0;
+  
+  --error-color: #f44336;
+  --error-light: #ff7961;
+  --error-dark: #ba000d;
+  --error-rgb: 244, 67, 54;
+  
+  --info-color: #2196f3;
+  --info-light: #6ec6ff;
+  --info-dark: #0069c0;
+  --info-rgb: 33, 150, 243;
+  
+  /* 中性色 - 灰度系统 */
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #eeeeee;
+  --gray-300: #e0e0e0;
+  --gray-400: #bdbdbd;
+  --gray-500: #9e9e9e;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+  
+  /* 背景色 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-dark: #1a1a2e;
+  
+  /* 文字色 */
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --text-light: #f8f9fa;
+  --text-dark: #343a40;
+  
+  /* 边框色 */
+  --border-color: #dee2e6;
+  --border-light: #e9ecef;
+  --border-dark: #ced4da;
+  
+  /* 阴影 */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  --shadow-primary: 0 0.5rem 1rem rgba(26, 35, 126, 0.15);
+  
+  /* 圆角 */
+  --border-radius-sm: 0.25rem;
+  --border-radius: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
+  --border-radius-pill: 50rem;
+  
+  /* 字体系统 */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'Roboto Mono', 'Courier New', monospace;
+  --font-family-serif: Georgia, 'Times New Roman', Times, serif;
+  
+  /* 字号系统 */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* 字重 */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* 行高 */
+  --line-height-xs: 1;
+  --line-height-sm: 1.25;
+  --line-height-base: 1.5;
+  --line-height-lg: 1.75;
+  --line-height-xl: 2;
+  
+  /* 间距系统 - 基于8px单位 */
+  --spacing-unit: 0.5rem; /* 8px */
+  
+  /* 小间距 */
+  --spacing-1: calc(var(--spacing-unit) * 0.5); /* 4px */
+  --spacing-2: var(--spacing-unit);            /* 8px */
+  --spacing-3: calc(var(--spacing-unit) * 1.5); /* 12px */
+  
+  /* 中间距 */
+  --spacing-4: calc(var(--spacing-unit) * 2);  /* 16px */
+  --spacing-5: calc(var(--spacing-unit) * 3);  /* 24px */
+  --spacing-6: calc(var(--spacing-unit) * 4);  /* 32px */
+  --spacing-7: calc(var(--spacing-unit) * 5);  /* 40px */
+  
+  /* 大间距 */
+  --spacing-8: calc(var(--spacing-unit) * 6);  /* 48px */
+  --spacing-9: calc(var(--spacing-unit) * 7);  /* 56px */
+  --spacing-10: calc(var(--spacing-unit) * 8); /* 64px */
+  --spacing-12: calc(var(--spacing-unit) * 12); /* 96px */
+  --spacing-16: calc(var(--spacing-unit) * 16); /* 128px */
+  
+  /* 交易相关颜色 */
+  --buy-color: #00c853;
+  --buy-light: #5efc82;
+  --buy-dark: #009624;
+  --buy-rgb: 0, 200, 83;
+  
+  --sell-color: #ff3d00;
+  --sell-light: #ff7539;
+  --sell-dark: #c30000;
+  --sell-rgb: 255, 61, 0;
+  
+  --hold-color: #ffab00;
+  --hold-light: #ffdd4b;
+  --hold-dark: #c67c00;
+  --hold-rgb: 255, 171, 0;
+  
+  /* 风险等级颜色 */
+  --risk-low: #4caf50;
+  --risk-medium: #ff9800;
+  --risk-high: #f44336;
+  --risk-extreme: #d32f2f;
+  
+  /* 信号强度颜色 */
+  --signal-weak: #ff9800;
+  --signal-moderate: #ffc107;
+  --signal-strong: #4caf50;
+  --signal-very-strong: #2196f3;
+  
+  /* 动画时间 */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+  
+  /* 层级 */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  --z-index-toast: 1080;
+  
+  /* 容器最大宽度 */
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1320px;
+  
+  /* 断点 */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
+
+/* 暗色主题变量 */
+[data-theme="dark"] {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --bg-dark: #0a0a1a;
+  
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --text-muted: #6c757d;
+  --text-light: #f8f9fa;
+  --text-dark: #dee2e6;
+  
+  --border-color: #495057;
+  --border-light: #6c757d;
+  --border-dark: #343a40;
+  
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.7);
+}
+
+/* 打印样式 */
+@media print {
+  :root {
+    --bg-primary: #ffffff;
+    --text-primary: #000000;
+    --border-color: #000000;
+  }
+}

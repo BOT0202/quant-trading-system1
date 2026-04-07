@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuant - 仪表盘</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 自定义CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-page">
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <!-- 品牌Logo -->
+            <a class="navbar-brand" href="dashboard.html">
+                <i class="fas fa-chart-line me-2"></i>
+                <span class="fw-bold">GoldQuant</span>
+                <small class="text-warning ms-2">PRO</small>
+            </a>
+            
+            <!-- 移动端切换按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- 导航内容 -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- 搜索框 -->
+                <form class="d-flex mx-auto my-2 my-lg-0" style="max-width: 400px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索信号、策略或交易员...">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- 右侧导航项 -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- 通知 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end p-0">
+                            <div class="dropdown-header bg-light py-3">
+                                <h6 class="mb-0">通知</h6>
+                                <small class="text-muted">您有3条未读通知</small>
+                            </div>
+                            <div class="dropdown-list" style="max-height: 300px; overflow-y: auto;">
+                                <a href="#" class="dropdown-item d-flex align-items-center py-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-signal text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="small text-muted">2分钟前</div>
+                                        <span class="fw-bold">新信号生成</span> - XAU/USD买入信号
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item d-flex align-items-center py-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="small text-muted">1小时前</div>
+                                        <span class="fw-bold">风险警告</span> - 市场波动性增加
+                                    </div>
+                                </a>
+                                <a href="#" class="dropdown-item d-flex align-items-center py-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="icon-circle bg-info">
+                                            <i class="fas fa-cog text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="small text-muted">3小时前</div>
+                                        <span class="fw-bold">系统更新</span> - 策略引擎已优化
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="dropdown-footer text-center py-2">
+                                <a href="#" class="text-decoration-none">查看所有通知</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- 消息 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-envelope"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                1
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end p-0">
+                            <div class="dropdown-header bg-light py-3">
+                                <h6 class="mb-0">消息</h6>
+                                <small class="text-muted">您有1条未读消息</small>
+                            </div>
+                            <div class="dropdown-list" style="max-height: 300px; overflow-y: auto;">
+                                <a href="#" class="dropdown-item d-flex align-items-center py-3">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://ui-avatars.com/api/?name=张伟&background=1a237e&color=fff" 
+                                             class="rounded-circle" width="40" height="40" alt="张伟">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="small text-muted">昨天 14:30</div>
+                                        <span class="fw-bold">张伟</span> - 关于策略优化的建议
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="dropdown-footer text-center py-2">
+                                <a href="#" class="text-decoration-none">查看所有消息</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- 用户菜单 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="https://ui-avatars.com/api/?name=张伟&background=ffd700&color=000" 
+                                 class="rounded-circle me-2" width="32" height="32" alt="用户头像">
+                            <span class="d-none d-lg-inline">张伟</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <h6 class="dropdown-header">账户</h6>
+                            <a class="dropdown-item" href="account_management.html">
+                                <i class="fas fa-user me-2"></i>个人资料
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cog me-2"></i>设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">交易</h6>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-wallet me-2"></i>我的钱包
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-history me-2"></i>交易历史
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-question-circle me-2"></i>帮助中心
+                            </a>
+                            <a class="dropdown-item text-danger" href="index.html">
+                                <i class="fas fa-sign-out-alt me-2"></i>退出登录
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 侧边菜单栏 -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                仪表盘
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signal_detail.html">
+                                <i class="fas fa-signal me-2"></i>
+                                信号中心
+                                <span class="badge bg-success float-end">12</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="trade_execution.html">
+                                <i class="fas fa-exchange-alt me-2"></i>
+                                交易执行
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="strategy_management.html">
+                                <i class="fas fa-chess-knight me-2"></i>
+                                策略管理
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="data_analysis.html">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                数据分析
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="account_management.html">
+                                <i class="fas fa-user-circle me-2"></i>
+                                账户管理
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>快捷操作</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="trade_execution.html">
+                                <i class="fas fa-plus-circle me-2 text-success"></i>
+                                新建交易
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="strategy_management.html">
+                                <i class="fas fa-plus-circle me-2 text-primary"></i>
+                                新建策略
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-download me-2 text-info"></i>
+                                导出数据
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>系统状态</span>
+                    </h6>
+                    <div class="px-3">
+                        <div class="system-status-card p-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="small">信号引擎</span>
+                                <span class="badge bg-success">运行中</span

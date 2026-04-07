@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuant - 登录</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 自定义CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body class="login-page">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+                <!-- 登录卡片 -->
+                <div class="card login-card shadow-lg">
+                    <div class="card-header text-center py-4">
+                        <div class="brand-logo mb-3">
+                            <i class="fas fa-chart-line fa-3x text-primary"></i>
+                        </div>
+                        <h1 class="h3 mb-2">GoldQuant</h1>
+                        <p class="text-muted">外盘黄金量化交易信号系统</p>
+                    </div>
+                    
+                    <div class="card-body p-4">
+                        <!-- 登录表单 -->
+                        <form id="loginForm" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope me-2"></i>邮箱地址
+                                </label>
+                                <input type="email" class="form-control" id="email" 
+                                       placeholder="name@example.com" required>
+                                <div class="invalid-feedback">
+                                    请输入有效的邮箱地址
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>密码
+                                </label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" 
+                                           placeholder="请输入密码" required>
+                                    <button class="btn btn-outline-secondary" type="button" 
+                                            id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    请输入密码
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    记住登录状态
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>登录
+                                </button>
+                            </div>
+                            
+                            <div class="text-center mb-3">
+                                <a href="#" class="text-decoration-none" id="forgotPassword">
+                                    <i class="fas fa-key me-1"></i>忘记密码？
+                                </a>
+                            </div>
+                            
+                            <div class="separator my-4">
+                                <span class="text-muted">或使用第三方登录</span>
+                            </div>
+                            
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-dark w-100">
+                                        <i class="fab fa-google me-2"></i>Google
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-primary w-100">
+                                        <i class="fab fa-weixin me-2"></i>微信
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!-- 注册链接 -->
+                        <div class="text-center mt-4">
+                            <p class="mb-0">
+                                还没有账户？
+                                <a href="#" class="text-decoration-none fw-bold" id="registerLink">
+                                    立即注册
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer text-center py-3">
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt me-1"></i>
+                            您的数据安全受256位加密保护
+                        </small>
+                    </div>
+                </div>
+                
+                <!-- 系统状态 -->
+                <div class="system-status mt-3 text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="status-indicator status-online me-2"></div>
+                        <small class="text-muted">系统状态: 在线</small>
+                    </div>
+                    <small class="text-muted d-block mt-1">
+                        <i class="fas fa-clock me-1"></i>
+                        最后更新: 2026-04-07 11:50
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">创建新账户</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 注册表单将在后续完善 -->
+                    <p class="text-center">注册功能正在开发中...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忘记密码模态框 -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">重置密码</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 忘记密码表单将在后续完善 -->
+                    <p class="text-center">密码重置功能正在开发中...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义JS -->
+    <script src="js/main.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+</html>
