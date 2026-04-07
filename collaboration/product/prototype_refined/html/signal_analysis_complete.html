@@ -1,0 +1,225 @@
+                                    <div class="strength-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>MACD指标权重</span>
+                                            <span class="fw-bold">25%</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                        <small class="text-muted">得分: 21.25/25</small>
+                                    </div>
+                                    
+                                    <div class="strength-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>布林带权重</span>
+                                            <span class="fw-bold">25%</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" style="width: 80%"></div>
+                                        </div>
+                                        <small class="text-muted">得分: 20/25</small>
+                                    </div>
+                                    
+                                    <div class="strength-total mt-4 pt-3 border-top">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">总分</span>
+                                            <span class="h4 text-success mb-0">82.25/100</span>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <span class="badge bg-success fs-6">强烈买入信号</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 多时间周期分析 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-clock me-2 text-info"></i>
+                                    多时间周期分析
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeframe-tabs mb-3">
+                                    <div class="btn-group w-100" role="group">
+                                        <button type="button" class="btn btn-outline-primary active">1小时</button>
+                                        <button type="button" class="btn btn-outline-primary">4小时</button>
+                                        <button type="button" class="btn btn-outline-primary">日线</button>
+                                        <button type="button" class="btn btn-outline-primary">周线</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeframe-analysis">
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="timeframe-card">
+                                                <div class="timeframe-header">
+                                                    <span class="badge bg-primary">1小时</span>
+                                                    <span class="text-success">买入</span>
+                                                </div>
+                                                <div class="timeframe-stats">
+                                                    <small>MA: 金叉 ✓</small>
+                                                    <small>RSI: 58 ✓</small>
+                                                    <small>强度: 75%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="timeframe-card">
+                                                <div class="timeframe-header">
+                                                    <span class="badge bg-primary">4小时</span>
+                                                    <span class="text-success">买入</span>
+                                                </div>
+                                                <div class="timeframe-stats">
+                                                    <small>MA: 金叉 ✓</small>
+                                                    <small>RSI: 62 ✓</small>
+                                                    <small>强度: 85%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="timeframe-card">
+                                                <div class="timeframe-header">
+                                                    <span class="badge bg-primary">日线</span>
+                                                    <span class="text-success">买入</span>
+                                                </div>
+                                                <div class="timeframe-stats">
+                                                    <small>MA: 多头 ✓</small>
+                                                    <small>RSI: 65 ✓</small>
+                                                    <small>强度: 90%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="timeframe-card">
+                                                <div class="timeframe-header">
+                                                    <span class="badge bg-primary">周线</span>
+                                                    <span class="text-warning">观望</span>
+                                                </div>
+                                                <div class="timeframe-stats">
+                                                    <small>MA: 震荡</small>
+                                                    <small>RSI: 55</small>
+                                                    <small>强度: 45%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeframe-summary mt-3">
+                                    <h6 class="mb-2">周期一致性分析</h6>
+                                    <div class="progress" style="height: 10px;">
+                                        <div class="progress-bar bg-success" style="width: 75%"></div>
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="fas fa-check-circle text-success me-1"></i>
+                                        3/4周期显示买入信号，趋势一致性良好
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 信号回测功能 -->
+                        <div class="card data-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-history me-2 text-secondary"></i>
+                                    信号回测
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="backtest-settings mb-3">
+                                    <div class="mb-2">
+                                        <label class="form-label small">回测时间范围</label>
+                                        <select class="form-select form-select-sm">
+                                            <option>最近1个月</option>
+                                            <option selected>最近3个月</option>
+                                            <option>最近6个月</option>
+                                            <option>最近1年</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label small">初始资金</label>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" value="10000">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-outline-primary w-100 mb-3">
+                                    <i class="fas fa-play me-1"></i> 开始回测
+                                </button>
+                                
+                                <div class="backtest-results">
+                                    <h6 class="mb-2">历史回测结果</h6>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="text-center p-2">
+                                                <div class="h5 text-success mb-0">+12.5%</div>
+                                                <small class="text-muted">收益率</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-center p-2">
+                                                <div class="h5 text-primary mb-0">65%</div>
+                                                <small class="text-muted">胜率</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <small class="text-muted">基于最近3个月数据</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义JS -->
+    <script src="js/forms.js"></script>
+    <script src="js/signal_analysis.js"></script>
+    
+    <script>
+        // 初始化信号分析图表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 时间周期切换功能
+            const timeframeButtons = document.querySelectorAll('.timeframe-tabs .btn');
+            timeframeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    timeframeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 这里可以添加切换时间周期的逻辑
+                    const timeframe = this.textContent;
+                    console.log('切换到时间周期:', timeframe);
+                });
+            });
+            
+            // 回测功能
+            const backtestButton = document.querySelector('.backtest-settings + .btn');
+            backtestButton.addEventListener('click', function() {
+                const timeframe = document.querySelector('.backtest-settings select').value;
+                const initialCapital = document.querySelector('.backtest-settings input').value;
+                
+                console.log('开始回测:', {
+                    timeframe: timeframe,
+                    initialCapital: initialCapital
+                });
+                
+                // 模拟回测结果
+                setTimeout(() => {
+                    alert('回测完成！收益率: +12.5%，胜率: 65%');
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
