@@ -170,6 +170,108 @@
                             </div>
                         </div>
 
+                        <!-- 策略版本管理 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-code-branch me-2 text-info"></i>
+                                    版本管理
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <span class="badge bg-primary me-2">当前版本: v2.1</span>
+                                        <span class="text-muted">创建于 2026-04-06 15:30</span>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-plus me-1"></i> 创建新版本
+                                    </button>
+                                </div>
+                                
+                                <!-- 版本列表 -->
+                                <div class="version-list">
+                                    <div class="version-item active">
+                                        <div class="version-header">
+                                            <span class="version-number">v2.1</span>
+                                            <span class="version-date">2026-04-06 15:30</span>
+                                        </div>
+                                        <div class="version-description">
+                                            优化了风险控制参数，调整了止损比例从3%到2%
+                                        </div>
+                                        <div class="version-actions">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye me-1"></i> 查看详情
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary">
+                                                <i class="fas fa-download me-1"></i> 导出配置
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="version-item">
+                                        <div class="version-header">
+                                            <span class="version-number">v2.0</span>
+                                            <span class="version-date">2026-04-05 10:15</span>
+                                        </div>
+                                        <div class="version-description">
+                                            增加了MACD指标参数，优化了移动平均线周期
+                                        </div>
+                                        <div class="version-actions">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye me-1"></i> 查看详情
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary">
+                                                <i class="fas fa-redo me-1"></i> 回滚到此版本
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="version-item">
+                                        <div class="version-header">
+                                            <span class="version-number">v1.2</span>
+                                            <span class="version-date">2026-04-03 14:20</span>
+                                        </div>
+                                        <div class="version-description">
+                                            初始版本，包含基础参数配置
+                                        </div>
+                                        <div class="version-actions">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye me-1"></i> 查看详情
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary">
+                                                <i class="fas fa-download me-1"></i> 导出配置
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 版本对比 -->
+                                <div class="version-comparison mt-4">
+                                    <h6 class="mb-3">版本对比</h6>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <select class="form-select">
+                                                <option>v2.1 (当前)</option>
+                                                <option>v2.0</option>
+                                                <option>v1.2</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select class="form-select">
+                                                <option>选择对比版本</option>
+                                                <option>v2.0</option>
+                                                <option>v1.2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-exchange-alt me-1"></i> 开始对比
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- 策略参数配置 -->
                         <div class="card data-card mb-4">
                             <div class="card-header">
