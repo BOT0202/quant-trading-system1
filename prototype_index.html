@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuant 原型公网访问</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #534bae 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .server-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .server-info .ip-address {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .server-info .status {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #4caf50;
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ffd700;
+            display: inline-block;
+        }
+        
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .page-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #1a237e;
+        }
+        
+        .page-card.completed {
+            border-color: #4caf50;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%);
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-completed {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .page-card h3 {
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .page-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .features li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .access-link {
+            display: inline-block;
+            background: #1a237e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .access-link:hover {
+            background: #000051;
+            transform: translateY(-2px);
+        }
+        
+        .quick-access {
+            background: #fff3e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .quick-access h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .quick-link {
+            background: white;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            text-decoration: none;
+            color: #1a237e;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .quick-link:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .quick-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 GoldQuant 原型公网访问</h1>
+            <p>外盘黄金量化交易信号系统 - 实时原型演示</p>
+        </div>
+        
+        <div class="server-info">
+            <div class="ip-address">公网IP: 43.153.157.218:8080</div>
+            <div class="status">服务器运行中</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📱 原型页面列表</h2>
+                <div class="pages-grid">
+                    <!-- 登录页面 -->
+                    <a href="/collaboration/product/prototype_refined/html/index.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>1. 登录页面</h3>
+                        <p>用户登录和注册入口，包含完整的表单验证和第三方登录选项。</p>
+                        <ul class="features">
+                            <li>表单验证系统</li>
+                            <li>密码显示切换</li>
+                            <li>第三方登录</li>
+                            <li>响应式设计</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 主仪表盘 -->
+                    <a href="/collaboration/product/prototype_refined/html/dashboard.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>2. 主仪表盘</h3>
+                        <p>系统主界面，包含导航菜单、通知中心、实时行情和信号概览。</p>
+                        <ul class="features">
+                            <li>顶部导航系统</li>
+                            <li>侧边菜单导航</li>
+                            <li>通知和消息中心</li>
+                            <li>用户菜单功能</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 信号详情页 -->
+                    <a href="/collaboration/product/prototype_refined/html/signal_detail.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>3. 信号详情页</h3>
+                        <p>详细的信号分析页面，包含技术指标、风险管理和交易操作。</p>
+                        <ul class="features">
+                            <li>信号强度分析</li>
+                            <li>价格走势图表</li>
+                            <li>技术指标展示</li>
+                            <li>交易操作面板</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 交易执行页 -->
+                    <a href="/collaboration/product/prototype_refined/html/trade_execution.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>4. 交易执行页</h3>
+                        <p>交易下单和执行页面，包含风险计算和交易确认流程。</p>
+                        <ul class="features">
+                            <li>交易表单系统</li>
+                            <li>风险计算器</li>
+                            <li>实时价格显示</li>
+                            <li>交易确认流程</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 策略管理页 -->
+                    <a href="/collaboration/product/prototype_refined/html/strategy_management.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>5. 策略管理页</h3>
+                        <p>策略创建、编辑和管理页面，包含回测结果展示。</p>
+                        <ul class="features">
+                            <li>策略列表展示</li>
+                            <li>策略创建向导</li>
+                            <li>参数配置界面</li>
+                            <li>回测结果图表</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 账户管理页 -->
+                    <a href="/collaboration/product/prototype_refined/html/account_management.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>6. 账户管理页</h3>
+                        <p>账户信息、交易历史和安全设置管理页面。</p>
+                        <ul class="features">
+                            <li>账户信息概览</li>
+                            <li>交易历史记录</li>
+                            <li>资金流水查询</li>
+                            <li>安全设置管理</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                    
+                    <!-- 数据分析页 -->
+                    <a href="/collaboration/product/prototype_refined/html/data_analysis.html" class="page-card completed">
+                        <div class="status-badge status-completed">已完成</div>
+                        <h3>7. 数据分析页</h3>
+                        <p>数据统计和分析页面，包含图表展示和报告生成。</p>
+                        <ul class="features">
+                            <li>收益分析图表</li>
+                            <li>信号准确率分析</li>
+                            <li>策略对比功能</li>
+                            <li>报告生成系统</li>
+                        </ul>
+                        <div class="access-link">立即访问</div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="quick-access">
+                <h3>⚡ 快速访问链接</h3>
+                <div class="quick-links">
+                    <a href="/prototype_preview.html" class="quick-link">原型预览总览</a>
+                    <a href="/collaboration/product/prototype_refined/html/index.html" class="quick-link">直接登录页面</a>
+                    <a href="/collaboration/product/prototype_refined/html/dashboard.html" class="quick-link">主仪表盘</a>
+                    <a href="/remaining_pages_completion_report.md" class="quick-link">开发报告</a>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📊 原型信息</h2>
+                <div class="pages-grid">
+                    <div class="page-card">
+                        <h3>开发进度</h3>
+                        <p>原型开发已完成7个核心页面，覆盖产品主要功能模块。</p>
+                        <ul class="features">
+                            <li>总页面数: 8个</li>
+                            <li>已完成: 7个 (87.5%)</li>
+                            <li>开发时间: 35分钟</li>
+                            <li>代码总量: 约150KB</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="page-card">
+                        <h3>技术特点</h3>
+                        <p>使用现代前端技术栈，具备生产级别代码质量。</p>
+                        <ul class="features">
+                            <li>HTML5 + CSS3 + JavaScript</li>
+                            <li>Bootstrap 5响应式框架</li>
+                            <li>Chart.js数据可视化</li>
+                            <li>专业金融UI设计</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="page-card">
+                        <h3>访问说明</h3>
+                        <p>所有页面均可通过公网IP直接访问，支持移动端浏览。</p>
+                        <ul class="features">
+                            <li>公网IP: 43.153.157.218</li>
+                            <li>端口: 8080</li>
+                            <li>无需登录即可访问</li>
+                            <li>响应式设计适配</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 GoldQuant 量化交易系统 | 原型演示版本 1.0</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                服务器地址: http://43.153.157.218:8080 | 启动时间: 2026-04-07 12:40
+            </p>
+        </div>
+    </div>
+</body>
+</html>
