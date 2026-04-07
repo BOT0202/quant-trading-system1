@@ -1,0 +1,405 @@
+/* GoldQuant - 交易页面特定样式 */
+
+/* 交易页面布局优化 */
+.trade-page {
+    background-color: var(--bg-secondary);
+}
+
+/* 交易表单样式增强 */
+#tradeForm .form-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+#tradeForm .form-control,
+#tradeForm .form-select {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-fast) ease;
+}
+
+#tradeForm .form-control:focus,
+#tradeForm .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25);
+}
+
+#tradeForm .form-control-lg,
+#tradeForm .form-select-lg {
+    padding: var(--spacing-4) var(--spacing-5);
+    font-size: var(--font-size-lg);
+}
+
+/* 当前价格显示 */
+.current-price-display {
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0.05) 100%);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-3);
+    border: 1px solid var(--border-light);
+}
+
+.current-price-display .h3 {
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+}
+
+/* 按钮组样式 */
+.btn-group.w-100 .btn {
+    flex: 1;
+    padding: var(--spacing-3) var(--spacing-2);
+    font-weight: var(--font-weight-medium);
+}
+
+.btn-group .btn-outline-primary.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.btn-group .btn-outline-success.active {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+}
+
+.btn-group .btn-outline-danger.active {
+    background-color: var(--error-color);
+    color: white;
+    border-color: var(--error-color);
+}
+
+/* 输入组样式 */
+.input-group-lg .form-control,
+.input-group-lg .input-group-text {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-lg);
+}
+
+.input-group-text {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* 风险计算器 */
+.risk-calculator .risk-item {
+    padding: var(--spacing-2) 0;
+}
+
+.risk-calculator .progress {
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius-pill);
+}
+
+.risk-calculator .progress-bar {
+    border-radius: var(--border-radius-pill);
+}
+
+/* 订单摘要 */
+.order-summary {
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-4);
+}
+
+.order-summary dl {
+    margin-bottom: 0;
+}
+
+.order-summary dt {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.order-summary dd {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    text-align: right;
+    font-size: var(--font-size-sm);
+}
+
+/* 快速交易按钮 */
+.quick-trade-btn {
+    padding: var(--spacing-3);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast) ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.quick-trade-btn:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-rgb), 0.05);
+    transform: translateY(-2px);
+}
+
+.quick-trade-btn .amount {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-1);
+}
+
+.quick-trade-btn .label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.quick-trade-btn.buy-btn {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.quick-trade-btn.buy-btn:hover {
+    background-color: rgba(var(--success-rgb), 0.1);
+}
+
+.quick-trade-btn.sell-btn {
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.quick-trade-btn.sell-btn:hover {
+    background-color: rgba(var(--error-rgb), 0.1);
+}
+
+/* 限价单设置区域 */
+.limit-order-settings {
+    background-color: rgba(var(--warning-rgb), 0.05);
+    border: 1px solid rgba(var(--warning-rgb), 0.2);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-4);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 交易确认按钮 */
+#confirmTrade {
+    padding: var(--spacing-4);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+    border: none;
+    transition: all var(--transition-fast) ease;
+}
+
+#confirmTrade:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(var(--success-rgb), 0.3);
+}
+
+#confirmTrade:active {
+    transform: translateY(0);
+}
+
+/* 取消按钮 */
+#cancelTrade {
+    padding: var(--spacing-3);
+    font-weight: var(--font-weight-medium);
+}
+
+/* 交易图表容器 */
+#tradeChart {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 991.98px) {
+    .current-price-display .h3 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .btn-group.w-100 .btn {
+        padding: var(--spacing-2) var(--spacing-1);
+        font-size: var(--font-size-sm);
+    }
+    
+    .order-summary {
+        padding: var(--spacing-3);
+    }
+}
+
+@media (max-width: 767.98px) {
+    #tradeForm .form-control-lg,
+    #tradeForm .form-select-lg {
+        padding: var(--spacing-3);
+        font-size: var(--font-size-base);
+    }
+    
+    .input-group-lg .form-control,
+    .input-group-lg .input-group-text {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font-size-base);
+    }
+    
+    .quick-trade-btn {
+        padding: var(--spacing-2);
+    }
+    
+    .quick-trade-btn .amount {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* 表单验证样式 */
+#tradeForm .was-validated .form-control:valid,
+#tradeForm .was-validated .form-select:valid {
+    border-color: var(--success-color);
+}
+
+#tradeForm .was-validated .form-control:invalid,
+#tradeForm .was-validated .form-select:invalid {
+    border-color: var(--error-color);
+}
+
+/* 加载状态 */
+.trade-loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.trade-loading.active {
+    display: flex;
+}
+
+.trade-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-4);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.trade-loading-text {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+/* 交易成功/失败提示 */
+.trade-result {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-6);
+    z-index: 10000;
+    display: none;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.trade-result.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.trade-result-icon {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-4);
+}
+
+.trade-result.success .trade-result-icon {
+    color: var(--success-color);
+}
+
+.trade-result.error .trade-result-icon {
+    color: var(--error-color);
+}
+
+.trade-result-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-3);
+}
+
+.trade-result-message {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-4);
+}
+
+/* 价格提醒 */
+.price-alert {
+    background-color: rgba(var(--warning-rgb), 0.1);
+    border-left: 4px solid var(--warning-color);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-4);
+}
+
+.price-alert .alert-icon {
+    color: var(--warning-color);
+    font-size: var(--font-size-xl);
+    margin-right: var(--spacing-3);
+}
+
+/* 打印样式 */
+@media print {
+    .trade-page {
+        background: none !important;
+    }
+    
+    .btn, .quick-trade-btn, .trade-loading, .trade-result {
+        display: none !important;
+    }
+    
+    .data-card {
+        box-shadow: none !important;
+        border: 1px solid var(--border-color) !important;
+        break-inside: avoid;
+    }
+}

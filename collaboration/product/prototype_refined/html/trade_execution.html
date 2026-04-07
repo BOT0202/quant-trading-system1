@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldQuant - 交易执行</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 自定义CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/trade.css">
+</head>
+<body class="dashboard-page">
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">
+                <i class="fas fa-chart-line me-2"></i>
+                <span class="fw-bold">GoldQuant</span>
+                <small class="text-warning ms-2">PRO</small>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <form class="d-flex mx-auto my-2 my-lg-0" style="max-width: 400px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索交易品种...">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="fas fa-arrow-left me-1"></i>
+                            返回仪表盘
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 侧边菜单栏 -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt me-2"></i>
+                                仪表盘
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signal_detail.html">
+                                <i class="fas fa-signal me-2"></i>
+                                信号详情
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="trade_execution.html">
+                                <i class="fas fa-exchange-alt me-2"></i>
+                                交易执行
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="strategy_management.html">
+                                <i class="fas fa-chess-knight me-2"></i>
+                                策略管理
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- 主内容 -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <!-- 面包屑导航 -->
+                <nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="dashboard.html">仪表盘</a></li>
+                        <li class="breadcrumb-item"><a href="signal_detail.html">信号详情</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">交易执行</li>
+                    </ol>
+                </nav>
+
+                <div class="row">
+                    <!-- 左侧：交易表单 -->
+                    <div class="col-lg-8">
+                        <!-- 交易表单卡片 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-trade-mark me-2 text-primary"></i>
+                                    交易下单
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="tradeForm" class="needs-validation" novalidate>
+                                    <!-- 交易对选择 -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <label for="symbol" class="form-label fw-bold">
+                                                <i class="fas fa-coins me-2"></i>交易品种
+                                            </label>
+                                            <select class="form-select form-select-lg" id="symbol" required>
+                                                <option value="">选择交易品种</option>
+                                                <option value="XAU/USD" selected>XAU/USD (黄金/美元)</option>
+                                                <option value="XAG/USD">XAG/USD (白银/美元)</option>
+                                                <option value="XPT/USD">XPT/USD (铂金/美元)</option>
+                                                <option value="XPD/USD">XPD/USD (钯金/美元)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-chart-line me-2"></i>当前价格
+                                            </label>
+                                            <div class="current-price-display">
+                                                <div class="h3 mb-1" id="currentPrice">$2,350.50</div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="badge bg-success me-2">
+                                                        <i class="fas fa-arrow-up me-1"></i>+0.85%
+                                                    </span>
+                                                    <small class="text-muted">24小时变化</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 交易类型和方向 -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <label for="orderType" class="form-label fw-bold">
+                                                <i class="fas fa-list-alt me-2"></i>订单类型
+                                            </label>
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="orderType" id="marketOrder" checked>
+                                                <label class="btn btn-outline-primary" for="marketOrder">市价单</label>
+                                                
+                                                <input type="radio" class="btn-check" name="orderType" id="limitOrder">
+                                                <label class="btn btn-outline-primary" for="limitOrder">限价单</label>
+                                                
+                                                <input type="radio" class="btn-check" name="orderType" id="stopOrder">
+                                                <label class="btn btn-outline-primary" for="stopOrder">止损单</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-arrows-alt-h me-2"></i>交易方向
+                                            </label>
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="tradeDirection" id="buyOrder" checked>
+                                                <label class="btn btn-outline-success" for="buyOrder">
+                                                    <i class="fas fa-arrow-up me-1"></i>买入
+                                                </label>
+                                                
+                                                <input type="radio" class="btn-check" name="tradeDirection" id="sellOrder">
+                                                <label class="btn btn-outline-danger" for="sellOrder">
+                                                    <i class="fas fa-arrow-down me-1"></i>卖出
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 交易数量 -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <label for="quantity" class="form-label fw-bold">
+                                                <i class="fas fa-balance-scale me-2"></i>交易数量
+                                            </label>
+                                            <div class="input-group input-group-lg">
+                                                <input type="number" class="form-control" id="quantity" 
+                                                       value="0.1" min="0.01" max="100" step="0.01" required>
+                                                <span class="input-group-text">手</span>
+                                            </div>
+                                            <div class="form-text">
+                                                1手 = 100盎司黄金
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="leverage" class="form-label fw-bold">
+                                                <i class="fas fa-rocket me-2"></i>杠杆倍数
+                                            </label>
+                                            <select class="form-select form-select-lg" id="leverage">
+                                                <option value="1">1倍 (无杠杆)</option>
+                                                <option value="5">5倍</option>
+                                                <option value="10" selected>10倍</option>
+                                                <option value="20">20倍</option>
+                                                <option value="50">50倍</option>
+                                                <option value="100">100倍</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- 止损止盈设置 -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <label for="stopLoss" class="form-label fw-bold">
+                                                <i class="fas fa-shield-alt me-2 text-danger"></i>止损价格
+                                            </label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="stopLoss" 
+                                                       value="2325.00" step="0.01">
+                                            </div>
+                                            <div class="form-text">
+                                                低于当前价格: $25.50 (-1.09%)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="takeProfit" class="form-label fw-bold">
+                                                <i class="fas fa-trophy me-2 text-success"></i>止盈价格
+                                            </label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="takeProfit" 
+                                                       value="2375.00" step="0.01">
+                                            </div>
+                                            <div class="form-text">
+                                                高于当前价格: $24.50 (+1.04%)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 限价单额外设置 -->
+                                    <div class="limit-order-settings mb-4" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="limitPrice" class="form-label fw-bold">
+                                                    <i class="fas fa-bullseye me-2"></i>限价价格
+                                                </label>
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="number" class="form-control" id="limitPrice" 
+                                                           value="2340.00" step="0.01">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- 实时图表 -->
+                        <div class="card data-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-chart-line me-2 text-primary"></i>
+                                    实时价格走势
+                                </h5>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-primary active">1分钟</button>
+                                    <button type="button" class="btn btn-outline-primary">5分钟</button>
+                                    <button type="button" class="btn btn-outline-primary">15分钟</button>
+                                    <button type="button" class="btn btn-outline-primary">1小时</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="tradeChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：风险计算和确认 -->
+                    <div class="col-lg-4">
+                        <!-- 风险计算器 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-calculator me-2 text-warning"></i>
+                                    风险计算器
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="risk-calculator">
+                                    <div class="risk-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>交易价值</span>
+                                            <span class="fw-bold" id="tradeValue">$23,505.00</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-info" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="risk-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>所需保证金</span>
+                                            <span class="fw-bold" id="requiredMargin">$2,350.50</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-primary" style="width: 40%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="risk-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>预计盈亏</span>
+                                            <span class="fw-bold text-success" id="estimatedProfit">+$245.00</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-success" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="risk-item mb-4">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>风险比例</span>
+                                            <span class="fw-bold text-warning" id="riskRatio">1:2.5</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-lightbulb me-2"></i>
+                                        <strong>建议：</strong> 本次交易风险适中，建议仓位占总资金的3-5%。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 订单确认 -->
+                        <div class="card data-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-clipboard-check me-2 text-success"></i>
+                                    订单确认
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="order-summary mb-4">
+                                    <h6 class="mb-3">订单摘要</h6>
+                                    <dl class="row mb-0">
+                                        <dt class="col-6">交易品种</dt>
+                                        <dd class="col-6">XAU/USD</dd>
+                                        
+                                        <dt class="col-6">订单类型</dt>
+                                        <dd class="col-6">市价单</dd>
+                                        
+                                        <dt class="col-6">交易方向</dt>
+                                        <dd class="col-6">买入</dd>
+                                        
+                                        <dt class="col-6">交易数量</dt>
+                                        <dd class="col-6">0.1手</dd>
+                                        
+                                        <dt class="col-6">杠杆倍数</dt>
+                                        <dd class="col-6">10倍</dd>
+                                        
+                                        <dt class="col-6">止损价格</dt>
+                                        <dd class="col-6">$2,325.00</dd>
+                                        
+                                        <dt class="col-6">止盈价格</dt>
+                                        <dd class="col-6">$2,375.00</dd>
+                                    </dl>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success btn-lg" id="confirmTrade">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        确认交易
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="cancelTrade">
+                                        <i class="fas fa-times me-2"></i>
+                                        取消
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 快速交易 -->
+                        <div class="card data-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-bolt me-2 text-warning"></i>
+                                    快速交易
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100 quick-trade-btn" data-amount="0
