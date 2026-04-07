@@ -1,0 +1,17 @@
+{
+  "checkpoints": [
+    {"time": 300, "name": "5分钟检查点", "target": "所有工作启动"},
+    {"time": 600, "name": "10分钟检查点", "target": "访谈完成50%"},
+    {"time": 900, "name": "15分钟检查点", "target": "访谈完成100%"},
+    {"time": 1200, "name": "20分钟检查点", "target": "文档生成80%"},
+    {"time": 1500, "name": "25分钟检查点", "target": "所有工作完成90%"},
+    {"time": 1800, "name": "30分钟检查点", "target": "所有工作100%完成"}
+  ],
+  "tasks": [
+    {"id": 1, "name": "深度访谈", "weight": 30},
+    {"id": 2, "name": "需求报告", "weight": 25},
+    {"id": 3, "name": "业务流程图", "weight": 20},
+    {"id": 4, "name": "原型图", "weight": 15},
+    {"id": 5, "name": "PRD框架", "weight": 10}
+  ]
+}
