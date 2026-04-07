@@ -1,0 +1,50 @@
+# 日志文件
+*.log
+*.log.*
+logs/
+
+# 大文件
+*.zip
+*.tar
+*.gz
+*.7z
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# 环境文件
+.env
+.env.local
+.env.development
+.env.production
+
+# 依赖目录
+node_modules/
+vendor/
+
+# 构建输出
+dist/
+build/
+out/
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 特定大文件
+collaboration/monitor.log
+collaboration/*.log
+
+# 原型开发临时文件
+*.info
+*.bak
+*.backup
