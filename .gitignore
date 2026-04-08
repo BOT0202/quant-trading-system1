@@ -44,6 +44,10 @@ Thumbs.db
 collaboration/monitor.log
 collaboration/*.log
 
+# 推送消息临时文件
+collaboration/push_messages/update_reminder_*.txt
+collaboration/push_messages/tech_20min_urgent.txt
+
 # 原型开发临时文件
 *.info
 *.bak
